@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mérida Fluye - Movilidad Inclusiva</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #f8fafc;
+      --border: #cbd5e1;
+      --focus-ring: #ea580c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    /* Enfoque accesible para teclado (POUR - Operable) */
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 4px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    /* Encabezado y Navegación */
+    header {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 1rem 1.5rem;
+      border-bottom: 4px solid var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #38bdf8;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .nav-btn {
+      background: none;
+      border: 2px solid transparent;
+      color: #ffffff;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Estructura general de secciones */
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      min-height: 65vh;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2, h3 {
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: #0f172a;
+    }
+
+    /* Pestaña: Inicio */
+    .hero {
+      background-color: var(--accent);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      color: #0369a1;
+    }
+
+    .hero p {
+      max-width: 750px;
+      margin: 1rem auto 2rem;
+      font-size: 1.25rem;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 1rem 2rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-cta:hover {
+      background-color: var(--primary-dark);
+    }
+
+    /* Tarjetas y Columnas (La Solución) */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .card h3 {
+      color: #0284c7;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Datos clave (El Problema) */
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat-box {
+      flex: 1 1 200px;
+      background: #f1f5f9;
+      border-left: 6px solid var(--primary);
+      padding: 1rem;
+      border-radius: 4px;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* Formulario accesible (Contacto) */
+    form {
+      background: var(--accent);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 650px;
+      margin-top: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #0f172a;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      background-color: #ffffff;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0f172a;
+      color: #94a3b8;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.95rem;
+      border-top: 1px solid #334155;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado con navegación accesible -->
+  <header>
+    <div class="nav-container">
+      <div class="brand">Mérida Fluye</div>
+      <nav aria-label="Navegación principal">
+        <button class="nav-btn active" onclick="openTab('inicio', this)">Inicio</button>
+        <button class="nav-btn" onclick="openTab('problema', this)">El Problema</button>
+        <button class="nav-btn" onclick="openTab('solucion', this)">La Solución</button>
+        <button class="nav-btn" onclick="openTab('contacto', this)">Contacto</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. PESTAÑA: INICIO -->
+    <section id="inicio" class="tab-content active" aria-labelledby="hero-title">
+      <div class="hero">
+        <h1 id="hero-title">Tecnología e Inteligencia Vial para Mérida</h1>
+        <p>Optimizando el flujo vehicular y protegiendo a los usuarios más vulnerables mediante ingeniería mecatrónica y visión artificial en el Periférico.</p>
+        <button class="btn-cta" onclick="document.querySelectorAll('.nav-btn')[2].click()">Explorar la Solución</button>
+      </div>
+
+      <h2>Propósito de la Iniciativa</h2>
+      <p>Mérida Fluye surge como una respuesta técnica a los problemas de movilidad urbana, promoviendo la equidad en el transporte mediante sistemas dinámicos que integran a la base de la pirámide trabajadora a una infraestructura vial segura y moderna.</p>
+    </section>
+
+    <!-- 2. PESTAÑA: EL PROBLEMA -->
+    <section id="problema" class="tab-content" aria-labelledby="prob-title">
+      <h2 id="prob-title">El Reto de Movilidad en el Anillo Periférico</h2>
+      <p>En el Anillo Periférico de Mérida, la restricción de tránsito en pasos a desnivel para motocicletas con motores menores a 350 cc obliga a miles de usuarios a circular por vías laterales e intersecciones críticas bajo los puentes.</p>
+      
+      <div class="stats-container">
+        <div class="stat-box">
+          <div class="stat-number">25%</div>
+          <div>Retraso masivo y saturación evitable en horas pico.</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">Alto Riesgo</div>
+          <div>Puntos ciegos y cruces peligrosos en glorietas e intersecciones.</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">BoP</div>
+          <div>Impacto directo en trabajadores, técnicos y repartidores locales.</div>
+        </div>
+      </div>
+
+      <p>Esta situación perjudica diariamente el tiempo y la seguridad física de los sectores que dependen de su motocicleta como herramienta económica primaria, generando una brecha en la infraestructura vial urbana.</p>
+    </section>
+
+    <!-- 3. PESTAÑA: LA SOLUCIÓN -->
+    <section id="solucion" class="tab-content" aria-labelledby="sol-title">
+      <h2 id="sol-title">Ingeniería Mecatrónica para la Movilidad Inclusiva</h2>
+      <p>Un sistema de gestión dinámico sustentable y de bajo costo de implementación, diseñado para operar en tiempo real:</p>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3>1. Semáforos con IA</h3>
+          <p>Control predictivo y adaptativo de tiempos semafóricos usando visión artificial para despejar las laterales según la densidad del tránsito.</p>
+        </article>
+        
+        <article class="card">
+          <h3>2. Señalización LED en Piso</h3>
+          <p>Zonas de espera adelantadas incrustadas en el pavimento con indicación luminosa activa para dar prioridad física y visibilidad a los motociclistas.</p>
+        </article>
+        
+        <article class="card">
+          <h3>3. Pre-sanciones Educativas</h3>
+          <p>Módulo de contratos inteligentes y cámaras para registrar invasiones indebidas, priorizando alertas educativas antes de penalizaciones monetarias.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. PESTAÑA: CONTACTO -->
+    <section id="contacto" class="tab-content" aria-labelledby="contact-title">
+      <h2 id="contact-title">Súmate a la Red de Movilidad</h2>
+      <p>Participa en las pruebas comunitarias o envía tus dudas y apelaciones al equipo técnico.</p>
+
+      <form onsubmit="event.preventDefault(); alert('¡Gracias por tus comentarios! Formulario enviado con éxito.');">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo:</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej. Pedro Burgos">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo Electrónico:</label>
+          <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com">
+        </div>
+
+        <div class="form-group">
+          <label for="rol">Tipo de Usuario:</label>
+          <select id="rol" name="rol">
+            <option value="moto">Motociclista / Repartidor</option>
+            <option value="auto">Automovilista</option>
+            <option value="estudiante">Estudiante / Investigador</option>
+            <option value="autoridad">Autoridad vial</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Comentario o Reporte:</label>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe tu propuesta o situación vial..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-cta" style="width: 100%;">Enviar Mensaje</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Mérida Fluye | Proyecto de Movilidad Inclusiva y Sustentable | Pedro Raúl Burgos Aké</p>
+  </footer>
+
+  <script>
+    function openTab(tabId, element) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.nav-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      element.classList.add('active');
+    }
+  </script>
+</body>
+</html>
