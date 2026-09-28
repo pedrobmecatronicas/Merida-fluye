@@ -173,6 +173,28 @@
       margin-bottom: 0.5rem;
     }
 
+    /* Contenedor del Diagrama Técnico */
+    .diagram-container {
+      margin: 2.5rem auto;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .diagram-container img {
+      width: 100%;
+      height: auto;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      display: block;
+    }
+
+    .diagram-caption {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
     /* Datos clave (El Problema) */
     .stats-container {
       display: flex;
@@ -290,7 +312,16 @@
     <!-- 3. PESTAÑA: LA SOLUCIÓN -->
     <section id="solucion" class="tab-content" aria-labelledby="sol-title">
       <h2 id="sol-title">Ingeniería Mecatrónica para la Movilidad Inclusiva</h2>
-      <p>Un sistema de gestión dinámico sustentable y de bajo costo de implementación, diseñado para operar en tiempo real:</p>
+      <p>Un sistema de gestión dinámico, sustentable y de bajo costo de implementación, diseñado para operar en tiempo real:</p>
+
+      <!-- Diagrama Técnico Integrado con Accesibilidad POUR -->
+      <figure class="diagram-container">
+        <img src="DiagramaPeriferico.png" 
+             alt="Diagrama técnico del nodo Anillo Periférico y Avenida Jacinto Canek ilustrando el flujo de motocicletas en la vía lateral (rojo), la zona de espera LED adelantada en pavimento (verde), el módulo sensor de pre-sanciones preventivas (morado) y el semáforo inteligente adaptativo con visión artificial (azul).">
+        <figcaption class="diagram-caption">
+          <strong>Figura 1.</strong> Distribución técnica e infraestructura inteligente de "Mérida Fluye" en el entronque Periférico - Av. Jacinto Canek.
+        </figcaption>
+      </figure>
 
       <div class="grid-3">
         <article class="card">
